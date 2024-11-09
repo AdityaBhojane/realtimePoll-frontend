@@ -9,7 +9,7 @@ function App() {
     const [currentPoll, setCurrentPoll] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:4000/polls').then(res => setPolls(res.data));
+        axios.get(import.meta.env.VITE_API).then(res => setPolls(res.data));
         socket.on('newPoll', poll => setCurrentPoll(poll));
         socket.on('pollEnded', poll => setPolls([...polls, poll]));
         socket.on('voteUpdate', poll => setCurrentPoll(poll));
